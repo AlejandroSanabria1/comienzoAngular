@@ -1,0 +1,53 @@
+<h2>Ejemplos de Data Binding</h2>
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-tittle">{{ title1 }}</h3>
+	</div>
+	<div class="panel-body">
+		{{ description1 }}
+	</div>
+</div>
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-tittle">{{ title2 }}</h3>
+	</div>
+	<div class="panel-body">
+		{{ description2 }}
+		<br/>
+		<a [href]="'mailto:' + user1.email" > <!-- Entre corchetes es un valor dinámico es javascript si no lo lee ocmo un string -->
+		Email de ...
+		<span [innerHTML]="user1.name"></span>
+		</a>
+	</div>
+</div>
+
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-tittle">{{ title3 }}</h3>
+	</div>
+	<div class="panel-body">
+		{{ description3 }}
+		<br/>
+		<button class="btn btn-default" (click)="sumAction()">Pulsar</button>
+		Nº de clics: <span class="badge">{{ counter }}</span>
+	</div>
+</div>
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-tittle">{{ title4 }}</h3>
+	</div>
+	<div class="panel-body">
+		{{ description4 }}
+		<br/>
+	<input type="text" class="form-control" [(ngModel)]="content" />
+	<br/>
+	<div class="alert alert-info">
+	El contenido es:
+	<strong>{{ content }}</strong>
+	</div>
+	</div>
+</div>

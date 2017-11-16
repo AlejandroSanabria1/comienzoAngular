@@ -1,0 +1,102 @@
+<h2>Ejemplos de Formularios reactivos</h2>
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-tittle">Listado de usuarios</h3>
+	</div>
+	<div class="panel-body">
+		<table class="table table-striped">
+			<tr>
+				<th>ID</th>
+				<th>Nombre</th>
+				<th>Email</th>
+				<th>Edad</th>
+				<th>Estado</th>
+				<th>&nbsp;</th>
+			</tr>
+			<tr *ngFor="let user of users">
+				<td>{{user.id}}</td>
+				<td>{{user.name}}</td>
+				<td>{{user.email}}</td>
+				<td>{{user.age}}</td>
+				<td>
+					<span class="label label-success" *ngIf="user.isActive">
+						ACTIVADO
+					</span>
+					<span class="label label-success" *ngIf="!user.isActive">
+						INACTIVO
+					</span>
+				</td>
+				<td>
+					<button class="btn btn-info glyphicon glyphicon-pencil"
+							(click)="loadUser(user)"
+					></button>
+					<button class="btn btn-danger glyphicon glyphicon-trash"
+							(click)="removeUser(user)"
+					></button>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-tittle">Creacion de formularios reactivos</h3>
+	</div>
+	<div class="panel-body">
+		<form [formGroup]="employeeForm">
+			<div class="form-group">
+				<label>Nombre</label>
+				<input type="text" class="form-control"
+					   id="name"
+					   name="name"
+					   formControlName="name"
+				/>
+				<div class="alert alert-danger"
+					[hidden]="employeeForm.controls['name'].valid || employeeForm.controls['name'].pristine">El nombre debe tener al menos 4 caracteres
+				</div>
+			</div>
+			<div class="form-group">
+				<label>Email</label>
+				<input type="text" class="form-control"
+					   id="email"
+					   name="email"
+					   formControlName="email"
+				/>
+				<div class="alert alert-danger"
+					[hidden]="employeeForm.controls['email'].valid || employeeForm.controls['email'].pristine">El email no es correcto
+				</div>
+			</div>
+			<div class="form-group">
+				<label>Edad</label>
+				<input type="text" class="form-control"
+					   id="age"
+					   name="age"
+					   formControlName="age"
+				/>
+			</div>
+			<div class="form-group">
+				<label>Puesto</label>
+				<select class="form-control"
+					   id="job"
+					   name="job"
+					   formControlName="job"
+				>
+					<option *ngFor="let job of jobs" [value]="job">
+						{{job}}
+					</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label>
+				<input type="checkbox" class="form-control" id="isActive" name="isActive" />¿Activo?
+				</label>
+			</div>
+
+			<button type="button" class="btn btn-success"
+				*ngIf="employee.id == null" [disabled]="!employeeForm.valid" (click)= "createUser()"
+			>Crear usuario</button>
+		</form>
+	</div>
+</div>

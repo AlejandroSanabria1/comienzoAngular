@@ -1,0 +1,70 @@
+<h2>Ejemplos de Formularios</h2>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-tittle">Creacion de formularios</h3>
+	</div>
+	<div class="panel-body">
+		<form #employeeForm="ngForm" (ngSubmit)="onSubmit(employeeForm)">
+			<div class="form-group">
+				<label>Nombre</label>
+				<input type="text" class="form-control"
+					   id="name"
+					   name="name"
+					   minlength="4"
+					   required 
+					   [(ngModel)]="employee.name"
+					   #nameState="ngModel"
+				/>
+				<div class="alert alert-danger"
+					[hidden]="nameState.valid || nameState.pristine">El nombre debe tener al menos 4 caracteres
+				</div>
+			</div>
+			<div class="form-group">
+				<label>Email</label>
+				<input type="text" class="form-control"
+					   id="email"
+					   name="email"
+					   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+					   minlength="4"
+					   required 
+					   [(ngModel)]="employee.email"
+					   #emailState="ngModel"
+				/>
+				<div class="alert alert-danger"
+					[hidden]="emailState.valid || emailState.pristine">El email no es correcto
+				</div>
+			</div>
+			<div class="form-group">
+				<label>Edad</label>
+				<input type="text" class="form-control"
+					   id="age"
+					   name="age"
+					   [(ngModel)]="employee.age"
+					   #ageState="ngModel"
+				/>
+			</div>
+			<div class="form-group">
+				<label>Puesto</label>
+				<select class="form-control"
+					   id="job"
+					   name="job"
+					   [(ngModel)]="employee.job"
+					   #jobState="ngModel"
+				>
+					<option *ngFor="let job of jobs" [value]="job">
+						{{job}}
+					</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label>
+				<input type="checkbox" class="form-control" id="isActive" name="isActive" [(ngModel)]="employee.isActive"/>¿Activo?
+				</label>
+			</div>
+
+			<button type="submit" class="btn btn-success"
+			[disabled]="!employeeForm.form.valid"
+			>Enviar</button>
+		</form>
+	</div>
+</div>

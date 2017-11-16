@@ -1,0 +1,67 @@
+
+<h2>Ejemplos de Directivas</h2>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-tittle">Directivas estructurales: ngIf</h3>
+	</div>
+	<div class="panel-body">
+		Ejemplo
+		<br/>
+		<button class="btn btn-default" (click)="changeColor('azul')">Azul</button>
+		<button class="btn btn-default" (click)="changeColor('verde')">Verde</button>
+		<div class="label label-primary" *ngIf="activeColor =='azul'">COLOR ACTIVO AZUL</div>
+		<div class="label label-success" *ngIf="activeColor =='verde'">COLOR ACTIVO AZUL</div>
+	</div>
+</div>
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-tittle">Directivas estructurales: ngFor</h3>
+	</div>
+	<div class="panel-body">
+		Ejemplo
+		<br/>
+		<strong>Lista de colores</strong>
+		<ul class="list-group">
+			<li class="list-group-item" *ngFor="let color of colorList;let i=index">{{i+1}}. {{color}}</li>
+		</ul>
+	</div>
+</div>
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-tittle">Directivas estructurales: ngTemplate</h3>
+	</div>
+	<div class="panel-body">
+		Ejemplo
+		<br/>
+		<div *ngIf="userIsLogin; then loginTrue else loginFalse"></div>
+		<ng-template #loginTrue> <!-- template reference variable -->
+			<button class="btn btn-warning" (click)="changeUserStatus()">Logout</button>
+			El usuario Si esta logeado
+		</ng-template>
+		
+		<ng-template #loginFalse>
+			<button class="btn btn-primary" (click)="changeUserStatus()">Login</button>
+			El usuario NO esta logeado
+		</ng-template>
+	</div>
+</div>
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-tittle">Directivas de atributo: ngClass</h3>
+	</div>
+	<div class="panel-body">
+		Ejemplo
+		<br/>
+		<button class="btn btn-default" (click)="changeAlertStatus('success')">Exito</button>
+		<button class="btn btn-default" (click)="changeAlertStatus('error')">Error</button>
+		<div class="alert" [ngClass]="{
+				'alert-success': alertStatus=='success',
+				'alert-danger': alertStatus=='error'
+				}">
+			Lorm ipsum dolor sit amet, consecteteur...
+		</div>
+	</div>
+</div>
